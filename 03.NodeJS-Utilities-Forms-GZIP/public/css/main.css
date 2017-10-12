@@ -264,4 +264,8 @@ input[type=submit]:hover {
 .content img {
     margin-right: 15px;
     float: left;
+    max-width:750px;
+    max-height:750px;
+    width: auto;
+    height: auto;
 }

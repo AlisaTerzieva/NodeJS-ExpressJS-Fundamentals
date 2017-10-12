@@ -1,5 +1,6 @@
 const fs = require('fs')
 const filePath = './public/images/favicon.ico'
+const utils = require('../utils/default')
 
 let typeChecker = path => {
   let support = {
@@ -21,11 +22,11 @@ let typeChecker = path => {
 let getFavicon = (req, res) => {
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      console.log(err)
+      utils.defaultErrorRes(res, err)
       return
     }
     res.writeHead(200, {
-      'Content-Type': 'imaga/x-icon'
+      'Content-Type': 'image/x-icon'
     })
     res.end(data)
   })
@@ -37,7 +38,7 @@ let getStaticFiles = (req, res) => {
 
   fs.readFile(resPath, (err, data) => {
     if (err) {
-      console.log(err)
+      utils.defaultErrorRes(res, err)
       return
     }
 

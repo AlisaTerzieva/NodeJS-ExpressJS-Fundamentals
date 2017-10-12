@@ -1,17 +1,15 @@
 const fs = require('fs')
 const filePath = './views/home.html'
+const utils = require('../utils/default')
 
 module.exports = (req, res) => {
   if (req.pathname === '/' && req.method === 'GET') {
     fs.readFile(filePath, (err, data) => {
       if (err) {
-        console.log(err)
+        utils.defaultErrorRes(res, err)
         return
       }
-      res.writeHead(200, {
-        'Content-Type': 'text/html'
-      })
-      res.end(data)
+      utils.defaultSuccessRes(res, data)
     })
   } else {
     return true
