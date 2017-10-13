@@ -12,14 +12,4 @@ tagSchema.methods.nameToLower = function () {
   return this.name.toLowerCase()
 }
 
-let Tag = mongoose.model('Tag', tagSchema)
-
-// let test = new Tag({
-//   name: 'Test',
-//   creationDate: Date.now()
-// })
-
-// console.log(test.nameToLower())
-module.exports = {
-  Tag: Tag
-}
+module.exports = mongoose.model('Tag', tagSchema)

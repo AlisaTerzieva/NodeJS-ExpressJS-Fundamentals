@@ -52,7 +52,7 @@ module.exports = (req, res) => {
   } else if (req.pathname.startsWith('/public/') && req.method === 'GET') {
     resData(req, res)
   } else {
-      res.write('404')
+    res.write('404')
     res.end()
   }
 }

@@ -1,5 +1,5 @@
-let Tag = require('./../models/TagSchema').Tag
-let Image = require('./../models/ImageSchema').Image
+let Tag = require('./../models/TagSchema')
+let Image = require('./../models/ImageSchema')
 const fs = require('fs')
 
 module.exports = (req, res) => {
@@ -13,11 +13,7 @@ module.exports = (req, res) => {
         'Content-Type': 'text/html'
       })
       let dispalyTags = ''
-      let test = new Tag({
-        name: 'TestTesTTT'
-      })
 
-      console.log(test.nameToLower())
       Tag.find({}).then(tags => {
         for (let tag of tags) {
           dispalyTags += `<div class='tag' id="${tag._id}">${tag.tagName}</div>`
