@@ -1,10 +1,6 @@
 const formidable = require('formidable')
+const qs = require('query-string')
 let Image = require('../models/ImageSchema')
-
-// URL: String,
-// creationDate: Date,
-// description: String,
-// tags: [{ type: ObjId, ref: 'Tag' }]
 
 let addImage = (req, res) => {
   let form = new formidable.IncomingForm()
@@ -15,14 +11,31 @@ let addImage = (req, res) => {
     }
     let image = new Image({
       URL: fields.imageUrl,
+      creationDate: Date.now(),
+      title: fields.imageTitle,
       description: fields.description,
-      tags: fields.tagsID.substr(0, fields.tagsID.length - 1).split(',')
+      tags: fields.tagsID.split(',').filter(tag => { return tag !== '' })
     }).save((err, image) => {
       if (err) {
         console.log(err)
         return
       }
+      console.log(`Successfully saved image with URL: ${image.URL}`)
     })
+    res.writeHead(302, { 'Location': '/' })
+    res.end()
+  })
+}
+
+let deleteImg = (req, res) => {
+  let imgId = qs.parse(qs.extract(req.url)).id
+  Image.find({ _id: imgId }).remove().exec((err, result) => {
+    if (err) {
+      console.log(err)
+      return
+    }
+    res.writeHead(302, { 'Location': '/' })
+    res.end()
   })
 }
 module.exports = (req, res) => {

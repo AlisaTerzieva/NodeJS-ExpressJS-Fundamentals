@@ -1,6 +1,6 @@
 const http = require('http')
 const url = require('url')
-const qs = require('querystring')
+const qs = require('query-string')
 const port = process.env.PORT || 5000
 const handlers = require('./handlers/handlerBlender')
 

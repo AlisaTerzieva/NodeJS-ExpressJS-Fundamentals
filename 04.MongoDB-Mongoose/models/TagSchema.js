@@ -4,7 +4,7 @@ const ObjId = Schema.Types.ObjectId
 
 let tagSchema = new Schema({
   name: { type: String, required: true },
-  creationDate: {type: Date, required: true, default: Date.now()},
+  creationDate: {type: Date, required: true},
   images: [{type: ObjId, ref: 'Image'}]
 })
 

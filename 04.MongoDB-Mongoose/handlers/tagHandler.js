@@ -13,7 +13,8 @@ module.exports = (req, res) => {
       }
 
       let tag = new Tag({
-        name: fields.tagName
+        name: fields.tagName,
+        creationDate: Date.now()
       }).save((err, tag) => {
         if (err) {
           console.log(err)

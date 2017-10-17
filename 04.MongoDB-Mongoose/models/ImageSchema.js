@@ -3,9 +3,10 @@ let Schema = mongoose.Schema
 const ObjId = Schema.Types.ObjectId
 
 let imageSchema = new Schema({
-  URL: {type: String, required: true},
-  creationDate: {type: Date, default: Date.now()},
-  description: {type: String},
+  URL: { type: String, required: true },
+  title: { type: String },
+  creationDate: { type: Date },
+  description: { type: String },
   tags: [{ type: ObjId, ref: 'Tag' }]
 })
 
